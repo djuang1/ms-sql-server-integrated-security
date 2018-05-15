@@ -1,0 +1,20 @@
+{
+  "configs": [
+    "ms-sql-server-integrated-security.xml"
+  ],
+  "secureProperties": [],
+  "redeploymentEnabled": true,
+  "name": "ms-sql-server-integrated-security",
+  "minMuleVersion": "4.1.1",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedResources": []
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}

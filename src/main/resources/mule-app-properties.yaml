@@ -1,0 +1,11 @@
+db:
+  host: "54.174.131.7"
+  port: "1433"
+  username: 
+  password: 
+  jtds:
+    url: jdbc:jtds:sqlserver://54.174.131.7:1433;domain=;password=;user=
+    driver: net.sourceforge.jtds.jdbc.Driver
+  mssql:
+    url: jdbc:sqlserver://54.174.131.7:1433;integratedSecurity=true
+    driver: com.microsoft.sqlserver.jdbc.SQLServerDriver

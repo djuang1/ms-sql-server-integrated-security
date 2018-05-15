@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	
+	<configuration-properties file="mule-app-properties.yaml" doc:name="Configuration properties" />
+	
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="2f3f9199-e9c5-4496-b5f1-24f71f41d355" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<db:config name="MS_SQL_Server" doc:name="Database Config" doc:id="f228bc59-ff04-4b55-bb40-43d95e55753d" >
+		<db:mssql-connection host="${db.host}" user="${db.username}" password="${db.password}" />
+	</db:config>
+	<db:config name="Database_Config_SQL_Server" doc:name="Database Config" doc:id="cfa0451c-d582-425c-b0de-a85149030d97" >
+		<db:generic-connection url="${db.mssql.url}" driverClassName="${db.mssql.driver}" />
+	</db:config>
+	<db:config name="Database_Config_JTDS" doc:name="Database Config" doc:id="21411461-e174-4acd-a09c-e9230b0ac31c" >
+		<db:generic-connection url="${db.jtds.url}" driverClassName="${db.jtds.driver}" />
+	</db:config>
+	<flow name="sql-server-integratedFlow" doc:id="5da06d5e-25cf-4224-8df8-5c3649a8c207" >
+		<http:listener doc:name="Listener" doc:id="ebf23120-31eb-439a-b7c8-8982f869f106" config-ref="HTTP_Listener_config" path="/records"/>
+		<db:select doc:name="Select" doc:id="97336353-bbb0-4448-afc6-436ef06f25bc" config-ref="Database_Config_SQL_Server">
+			<db:sql >select * from [dotnet].[dbo].[records]</db:sql>
+		</db:select>
+		<ee:transform doc:name="Transform Message" doc:id="ef6ffe46-7910-42a9-bd88-6fa73ed9af0b" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
