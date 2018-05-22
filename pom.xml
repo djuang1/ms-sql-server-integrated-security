@@ -35,12 +35,10 @@
 							<groupId>com.microsoft.sqlserver</groupId>
 							<artifactId>mssql-jdbc</artifactId>
 						</sharedLibrary>
-						<!-- 
 						<sharedLibrary>
 							<groupId>com.microsoft.sqlserver</groupId>
-							<artifactId>mssql-jdbc-auth</artifactId>
+							<artifactId>sqljdbc_auth-x64</artifactId>
 						</sharedLibrary>
-						 -->
 					</sharedLibraries>
 				</configuration>
 			</plugin>
@@ -76,15 +74,12 @@
 			<artifactId>mssql-jdbc</artifactId>
 			<version>6.4.0.jre8</version>
 		</dependency>
-		<!-- 
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc-auth</artifactId>
+			<artifactId>sqljdbc_auth-x64</artifactId>
 			<version>6.4.0.jre8</version>
-			<classifier>external-library</classifier>
 			<type>dll</type>
 		</dependency>
-		-->
 	</dependencies>
 
 	<repositories>
