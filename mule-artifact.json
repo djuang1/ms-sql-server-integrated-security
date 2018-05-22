@@ -10,7 +10,10 @@
   "classLoaderModelLoaderDescriptor": {
     "id": "mule",
     "attributes": {
-      "exportedResources": []
+      "exportedResources": [
+      	"lib/auth/x86/sqljdbc_auth.dll",
+      	"lib/auth/x64/sqljdbc_auth.dll"
+      	]
     }
   },
   "bundleDescriptorLoader": {
